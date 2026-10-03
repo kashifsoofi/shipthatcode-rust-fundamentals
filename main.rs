@@ -2,7 +2,7 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    let n: i32 = stdin
+    let n: i64 = stdin
         .lock()
         .lines()
         .next()
@@ -11,11 +11,13 @@ fn main() {
         .trim()
         .parse()
         .unwrap();
-    // TODO: choose between FizzBuzz, Fizz, Buzz and the number itself.
-    match (n % 3 == 0, n % 5 == 0) {
-        (true, false) => println!("Fizz"),
-        (false, true) => println!("Buzz"),
-        (true, true) => println!("FizzBuzz"),
-        _ => println!("{}", n),
+
+    // TODO: make `total` an accumulator and use a for loop over a range
+    // so that it ends up holding 1 + 2 + ... + n.
+    let mut total = 0;
+    for i in 1..=n {
+        total += i;
     }
+
+    println!("{}", total);
 }
