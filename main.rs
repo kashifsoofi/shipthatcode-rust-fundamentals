@@ -2,13 +2,20 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    let mut lines = stdin.lock().lines();
-    let name = lines.next().unwrap().unwrap().trim().to_string();
-    let age: u32 = lines.next().unwrap().unwrap().trim().parse().unwrap();
-    let height: f64 = lines.next().unwrap().unwrap().trim().parse().unwrap();
-
-    // TODO: give each placeholder the format spec the badge needs.
-    println!("[{:10}]", name);
-    println!("Age: {:03}", age);
-    println!("Height: {:.2} m", height);
+    let n: i32 = stdin
+        .lock()
+        .lines()
+        .next()
+        .unwrap()
+        .unwrap()
+        .trim()
+        .parse()
+        .unwrap();
+    // TODO: choose between FizzBuzz, Fizz, Buzz and the number itself.
+    match (n % 3 == 0, n % 5 == 0) {
+        (true, false) => println!("Fizz"),
+        (false, true) => println!("Buzz"),
+        (true, true) => println!("FizzBuzz"),
+        _ => println!("{}", n),
+    }
 }
