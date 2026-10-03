@@ -1,15 +1,21 @@
-use std::io;
+use std::io::{self, BufRead};
 
 fn main() {
-    // Already done for you: read one line of input into `name` and drop the
-    // Enter key from its end. A later lesson explains how this works.
-    let mut line = String::new();
-    io::stdin().read_line(&mut line).unwrap();
-    let name = line.trim_end_matches(|c| c == '\r' || c == '\n');
+    let stdin = io::stdin();
+    let mut lines = stdin.lock().lines();
+    let first = lines.next().unwrap().unwrap();
+    let second = lines.next().unwrap().unwrap();
 
-    // TODO: print the two lines described in the exercise.
-    // Use a {} placeholder for name; do not type any name yourself.
-    let _ = name;
-    println!("Hello, {}!", name);
-    println!("Welcome to Rust.");
+    // TODO: shadow `first` and `second` as i64 numbers (the text may have spaces around it).
+    // TODO: keep a mutable running total starting at 0; add each number and print the total after each addition.
+    let first = first.trim();
+    let second = second.trim();
+    let first: i64 = first.parse().unwrap();
+    let second: i64 = second.parse().unwrap();
+
+    let mut total: i64 = 0;
+    total += first;
+    println!("{}", total);
+    total += second;
+    println!("{}", total);
 }
