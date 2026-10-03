@@ -2,17 +2,13 @@ use std::io::{self, BufRead};
 
 fn main() {
     let stdin = io::stdin();
-    let line: String = stdin.lock().lines().next().unwrap().unwrap();
+    let mut lines = stdin.lock().lines();
+    let name = lines.next().unwrap().unwrap().trim().to_string();
+    let age: u32 = lines.next().unwrap().unwrap().trim().parse().unwrap();
+    let height: f64 = lines.next().unwrap().unwrap().trim().parse().unwrap();
 
-    let trimmed = line.trim();
-    let uppercase = trimmed.to_uppercase();
-    let char_count = trimmed.chars().count();
-    let byte_count = trimmed.len();
-    // TODO: take a trimmed &str view of `line`, then print three lines:
-    //   1. that text in uppercase
-    //   2. how many characters it has
-    //   3. how many bytes it has
-    println!("{}", uppercase);
-    println!("{}", char_count);
-    println!("{}", byte_count);
+    // TODO: give each placeholder the format spec the badge needs.
+    println!("[{:10}]", name);
+    println!("Age: {:03}", age);
+    println!("Height: {:.2} m", height);
 }
